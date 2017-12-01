@@ -16,7 +16,7 @@ public class PageController {
         return "add.jsp";
     }
 
-    @RequestMapping("/efficientFrontier")
+    @RequestMapping("/efficientFrontier1")
     @ResponseBody
     public Object[] efficientFrontier(){
         Object[] resust = null;
