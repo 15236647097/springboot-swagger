@@ -1,13 +1,11 @@
 package com.neo.secvice;
 
-import com.neo.entity.FundGroupBuy;
-import com.neo.entity.RiskController;
+import com.neo.entity.*;
 import com.neo.returnType.*;
-import com.neo.entity.Interval;
-import com.neo.entity.RiskIncomeInterval;
 import com.neo.mapper.FundGroupMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import util.CalculatePriceAndYieldService;
 import util.MVO;
 
 import java.util.*;
@@ -329,14 +327,19 @@ public class FundGroupService {
         return smk;
     }
 
-    public double getFundGroupIncome(String id){
-        List<FundGroupBuy> list = fundGroupMapper.getFundGroupIncome(id);
+    public double getFundGroupIncome(String id,String starttime,String endtime){
+        CalculatePriceAndYieldService cpas = new CalculatePriceAndYieldService();
+        List<FundGroupBuy> list = fundGroupMapper.getFundGroupBuy(id);
         double num = 0;
         for(FundGroupBuy fundGroupBuy : list){
-            num+=fundGroupBuy.getUnitnav();
+            List<FundNetValue> fundNetValues = fundGroupMapper.getFundNetValue(fundGroupBuy.getFund_id(),starttime,endtime);
+            List<Double> list1 = new ArrayList<Double>();
+            list1.add(fundNetValues.get(0).getNavadj());
+            list1.add(fundNetValues.get(fundNetValues.size()-1).getNavadj());
+            list1 = cpas.calculatePriceToYield(list1,"Simple");
+            num+=list1.get(0)*fundGroupBuy.getProportion();
         }
-        double income = list.get(0).getBuy_num()*num;
-        return income;
+        return num;
     }
 
     /**

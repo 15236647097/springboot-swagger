@@ -130,8 +130,8 @@ public class FundGroupController {
     }
 
     @RequestMapping("/getFundGroupIncome/{id}")
-    public double getFundGroupIncome(@PathVariable("id") String id){
-        double income = fundGroupService.getFundGroupIncome(id);
+    public double getFundGroupIncome(@PathVariable("id") String id,String starttime,String endtime){
+        double income = fundGroupService.getFundGroupIncome(id,starttime,endtime);
         return income;
     }
 }

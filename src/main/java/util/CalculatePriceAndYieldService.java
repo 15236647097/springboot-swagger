@@ -1,8 +1,8 @@
 package util;
 
 import com.mathworks.toolbox.javabuilder.MWException;
-import com.yihui.calculatepricetoyield.CalculatePriceToYield;
-import com.yihui.calculateyieldtoprice.CalculateYieldToPrice;
+import com.yihui.calculatePriceToYield.CalculatePriceToYield;
+import com.yihui.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

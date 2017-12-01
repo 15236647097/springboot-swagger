@@ -84,8 +84,12 @@
         select risk_num,income_num from risk_income_interval where fund_group_id=#{id}
     </select>
 
-    <select id="getFundGroupIncome" resultType="com.neo.entity.FundGroupBuy">
-        select b.buy_num,a.UNITNAV*c.proportion UNITNAV from FUND_NET_VALUE a,fundgroupbuy b,fundgroupbuydetail c
-        where a.code=c.fund_id and b.id=c.fund_group_buy_id and b.id=#{id}
+    <select id="getFundNetValue" resultType="com.neo.entity.FundNetValue">
+        select navadj,navlatestdate from fund_net_value a
+        where a.code= #{id} and navlatestdate BETWEEN date_format(#{starttime}, '%Y-%m-%d') and date_format(#{endtime}, '%Y-%m-%d')
+        ORDER BY navlatestdate
+    </select>
+    <select id="getFundGroupBuy" parameterType="java.lang.String" resultType="com.neo.entity.FundGroupBuy">
+        select * from fundgroupbuydetail c where c.fund_group_buy_id = #{id}
     </select>
 </mapper>

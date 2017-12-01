@@ -41,6 +41,8 @@ public interface FundGroupMapper {
 
     List<RiskIncomeInterval> getScaleMark(@Param("id") String id);
 
-    List<FundGroupBuy> getFundGroupIncome(@Param("id") String id);
+    List<FundGroupBuy> getFundGroupBuy(@Param("id") String id);
+
+    List<FundNetValue> getFundNetValue(@Param("id") String id,@Param("starttime") String starttime,@Param("endtime") String endtime);
 
 }
