@@ -1,7 +1,9 @@
-package util;
+package com.neo.test;
 
 import com.mathworks.toolbox.javabuilder.MWException;
-import com.yihui.*;
+import com.yihui.calculatepricetoyield.CalculatePriceToYield;
+import com.yihui.calculateyieldtoprice.CalculateYieldToPrice;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,19 +13,55 @@ import java.util.List;
 /**
  * Author: yongquan.xiong
  * Date: 2017/11/28
- * Desc:价格收益率互相转换计算（使用 MATLAB）
+ * Desc:价格收益率互相转换计算
  */
-public class CalculatePriceAndYieldService {
+public class CalculatePriceAndYieldServiceTest {
 
-    private static final Logger logger= LoggerFactory.getLogger(CalculatePriceAndYieldService.class);
+    private static final Logger logger= LoggerFactory.getLogger(CalculatePriceAndYieldServiceTest.class);
 
     /*
      * 价格转收益率
-     * param:tickSeries 价格序列
-     *       tickTime 时间价格序列
-     *       method 计算利息方式 必须为'Simple' (默认值) 或'Continuous'
-     *
      */
+    @Test
+    public void test(){
+
+
+        Object[] result=null;
+
+        List<Double> retSeriesList=new ArrayList<>();
+
+        List<Double> tickSeriesList=new ArrayList<>();
+
+        List<Double> tickSeries =new ArrayList<>();
+        tickSeries.add(100d);
+        tickSeries.add(110d);
+        tickSeries.add(120d);
+        tickSeries.add(120d);
+
+        double[][] tickTime  ={};//时间价格序列
+        String method="Simple";//计算利息方式 必须为'Simple' (默认值) 或'Continuous'
+        retSeriesList=calculatePriceToYield(tickSeries,method);
+
+
+
+        double startPrice=1;//初始价格，默认为1
+        double[][] retIntervals  ={};//收益率时间序列
+        String startTime="2011-11-11";//开始时间
+        String method1="Simple";//计算利息方式 必须为'Simple' (默认值) 或'Continuous'
+
+        List<Double> retSeries =new ArrayList<>();
+        retSeries.add(0.1);
+        retSeries.add(0.05);
+        retSeries.add(-0.05);
+        tickSeriesList=calculateYieldToPrice(retSeries,startPrice,method1);
+
+
+
+
+
+    }
+
+
     public List<Double> calculatePriceToYield(List<Double> tickSeries,String method){
 
         double[][] tickTime  ={};//时间价格序列
@@ -37,7 +75,7 @@ public class CalculatePriceAndYieldService {
         }
 
         try {
-            MatLab calculatePriceToYield=new MatLab();
+            CalculatePriceToYield calculatePriceToYield=new CalculatePriceToYield();
             result=calculatePriceToYield.calculatePriceToYield(1,tickSeriesArr,tickTime,method);
 
             if(result!=null && result[0]!=null){
@@ -50,7 +88,7 @@ public class CalculatePriceAndYieldService {
             }
 
         } catch (MWException e) {
-            logger.error("Failed to calculatePriceToYield");
+            logger.debug("Failed to calculatePriceToYield");
             e.printStackTrace();
         }
 
@@ -81,7 +119,7 @@ public class CalculatePriceAndYieldService {
         }
 
         try {
-            MatLab calculateYieldToPrice=new MatLab();
+            CalculateYieldToPrice calculateYieldToPrice=new CalculateYieldToPrice();
             result=calculateYieldToPrice.calculateYieldToPrice(1,retSeriesArr,startPrice,retIntervals,startTime,method);
 
             if(result!=null && result[0]!=null){
@@ -93,13 +131,14 @@ public class CalculatePriceAndYieldService {
             }
 
         } catch (MWException e) {
-            logger.error("Failed to calculateYieldToPrice");
+            logger.debug("Failed to calculateYieldToPrice");
             e.printStackTrace();
         }
 
         return tickSeriesList;
 
     }
+
 
 
 
