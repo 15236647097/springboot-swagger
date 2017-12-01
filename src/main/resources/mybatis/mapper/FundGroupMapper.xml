@@ -86,7 +86,7 @@
 
     <select id="getFundNetValue" resultType="com.neo.entity.FundNetValue">
         select navadj,navlatestdate from fund_net_value a
-        where a.code= #{id} and navlatestdate BETWEEN date_format(#{starttime}, '%Y-%m-%d') and date_format(#{endtime}, '%Y-%m-%d')
+        where a.code= #{id} and navlatestdate BETWEEN #{starttime} and #{endtime}
         ORDER BY navlatestdate
     </select>
     <select id="getFundGroupBuy" parameterType="java.lang.String" resultType="com.neo.entity.FundGroupBuy">
