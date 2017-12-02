@@ -1,7 +1,7 @@
 package util;
 
-import calculateportvrisk.CalculatePortvrisk;
 import com.mathworks.toolbox.javabuilder.MWException;
+import com.yihui.MatLab;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,8 +30,8 @@ public class CalculatePortvrisks {
         Double riskThreshold=1-confidenceInterval;
 
         try {
-            CalculatePortvrisk calculatePortvrisk=new CalculatePortvrisk();
-            result=calculatePortvrisk.calculatePortvrisk(1,portReturn,portRisk,riskThreshold,portValue);
+            MatLab matLab= new MatLab();
+            result=matLab.calculatePortvrisk(1,portReturn,portRisk,riskThreshold,portValue);
 
             if(result!=null && result[0]!=null){
                 portvrisk=Double.parseDouble(result[0].toString());

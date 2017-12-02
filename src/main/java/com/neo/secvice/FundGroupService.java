@@ -5,7 +5,7 @@ import com.neo.returnType.*;
 import com.neo.mapper.FundGroupMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import util.CalculatePriceAndYieldService;
+import util.CalculatePriceAndYield;
 import util.MVO;
 
 import java.util.*;
@@ -330,7 +330,7 @@ public class FundGroupService {
     }
 
     public double getFundGroupIncome(String id,String starttime,String endtime){
-        CalculatePriceAndYieldService cpas = new CalculatePriceAndYieldService();
+        CalculatePriceAndYield cpa = new CalculatePriceAndYield();
         List<FundGroupBuy> list = fundGroupMapper.getFundGroupBuy(id);
         double num = 0;
         for(FundGroupBuy fundGroupBuy : list){
@@ -338,7 +338,7 @@ public class FundGroupService {
             List<Double> list1 = new ArrayList<Double>();
             list1.add(fundNetValues.get(0).getNavadj());
             list1.add(fundNetValues.get(fundNetValues.size()-1).getNavadj());
-            list1 = cpas.calculatePriceToYield(list1,"Simple");
+            list1 = cpa.calculatePriceToYield(list1,"Simple");
             num+=list1.get(0)*fundGroupBuy.getProportion();
         }
         return num;

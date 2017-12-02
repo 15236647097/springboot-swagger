@@ -1,7 +1,7 @@
 package util;
 
-import calculatemaxdrawdown.CalculateMaxdrawdown;
 import com.mathworks.toolbox.javabuilder.MWException;
+import com.yihui.MatLab;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,11 +19,10 @@ public class CalculateMaxdrawdowns {
      */
     public Double calculateMaxdrawdown( double[] temp){
         Object[] result=null;
-        CalculateMaxdrawdown calculateMaxdrawdown= null;
         Double maxdrawdownValue=null;
         try {
-            calculateMaxdrawdown = new CalculateMaxdrawdown();
-            result=calculateMaxdrawdown.calculateMaxdrawdown(1,temp);
+            MatLab matLab= new MatLab();
+            result=matLab.calculateMaxdrawdown(1,temp);
 
             if(result!=null && result[0]!=null){
 

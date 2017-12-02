@@ -1,8 +1,7 @@
 package com.neo.test;
 
 import com.mathworks.toolbox.javabuilder.MWException;
-import com.yihui.calculatepricetoyield.CalculatePriceToYield;
-import com.yihui.calculateyieldtoprice.CalculateYieldToPrice;
+import com.yihui.MatLab;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,8 +72,8 @@ public class CalculatePriceAndYieldServiceTest {
         }
 
         try {
-            CalculatePriceToYield calculatePriceToYield=new CalculatePriceToYield();
-            result=calculatePriceToYield.calculatePriceToYield(1,tickSeriesArr,tickTime,method);
+            MatLab matLab= new MatLab();
+            result=matLab.calculatePriceToYield(1,tickSeriesArr,tickTime,method);
 
             if(result!=null && result[0]!=null){
                 retSeries=result[0].toString().split("\n");
@@ -117,8 +116,8 @@ public class CalculatePriceAndYieldServiceTest {
         }
 
         try {
-            CalculateYieldToPrice calculateYieldToPrice=new CalculateYieldToPrice();
-            result=calculateYieldToPrice.calculateYieldToPrice(1,retSeriesArr,startPrice,retIntervals,startTime,method);
+            MatLab matLab= new MatLab();
+            result=matLab.calculateYieldToPrice(1,retSeriesArr,startPrice,retIntervals,startTime,method);
 
             if(result!=null && result[0]!=null){
                 tickSeries=result[0].toString().split("\n");
