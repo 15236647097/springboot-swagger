@@ -1,7 +1,6 @@
 package util;
 
 import com.mathworks.toolbox.javabuilder.MWException;
-import com.yihui.calculatePriceToYield.CalculatePriceToYield;
 import com.yihui.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +37,7 @@ public class CalculatePriceAndYieldService {
         }
 
         try {
-            CalculatePriceToYield calculatePriceToYield=new CalculatePriceToYield();
+            MatLab calculatePriceToYield=new MatLab();
             result=calculatePriceToYield.calculatePriceToYield(1,tickSeriesArr,tickTime,method);
 
             if(result!=null && result[0]!=null){
@@ -82,7 +81,7 @@ public class CalculatePriceAndYieldService {
         }
 
         try {
-            CalculateYieldToPrice calculateYieldToPrice=new CalculateYieldToPrice();
+            MatLab calculateYieldToPrice=new MatLab();
             result=calculateYieldToPrice.calculateYieldToPrice(1,retSeriesArr,startPrice,retIntervals,startTime,method);
 
             if(result!=null && result[0]!=null){

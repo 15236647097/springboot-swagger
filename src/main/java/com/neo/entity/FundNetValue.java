@@ -9,6 +9,7 @@ public class FundNetValue {
     private double navadj;//
     private Date navLatestDate;//
 
+
     public double getNavadj() {
         return navadj;
     }

@@ -42,6 +42,10 @@
         where a.code = b.fund_id and fund_group_id = #{id}) a GROUP BY a.fund_income_type
     </select>
 
+    <select id="efficientFrontier" resultType="com.neo.entity.FundGroupDetails">
+        select fund_id from fund_group_details where fund_group_id = #{id}
+    </select>
+
     <update id="updateStatus" parameterType="map">
         update fund_group set status = #{status},group_last_mod_time=#{time} where id = #{id}
     </update>

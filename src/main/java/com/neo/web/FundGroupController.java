@@ -70,9 +70,9 @@ public class FundGroupController {
      * 有效前沿线
      * @return
      */
-    @RequestMapping("/api/asset-allocation/products/{uuid}/effective-frontier-points")
-    public RevenueContributionReturn efficientFrontier(){
-        RevenueContributionReturn aReturn = fundGroupService.efficientFrontier();
+    @RequestMapping("/api/asset-allocation/products/{groupId}/effective-frontier-points")
+    public RevenueContributionReturn efficientFrontier(@PathVariable("groupId") String uuid){
+        RevenueContributionReturn aReturn = fundGroupService.efficientFrontier(uuid);
         return aReturn;
     }
 
