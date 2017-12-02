@@ -85,7 +85,7 @@
     </select>
 
     <select id="getFundNetValue" resultType="com.neo.entity.FundNetValue">
-        select navadj,navlatestdate from fund_net_value a
+        select navadj,navlatestdate navLatestDate from fund_net_value a
         where a.code= #{id} and navlatestdate BETWEEN #{starttime} and #{endtime}
         ORDER BY navlatestdate
     </select>

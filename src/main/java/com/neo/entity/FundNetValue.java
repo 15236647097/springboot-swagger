@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class FundNetValue {
     private double navadj;//
-    private Date navlatestdate;//
+    private Date navLatestDate;//
 
     public double getNavadj() {
         return navadj;
@@ -17,11 +17,11 @@ public class FundNetValue {
         this.navadj = navadj;
     }
 
-    public Date getNavlatestdate() {
-        return navlatestdate;
+    public Date getNavLatestDate() {
+        return navLatestDate;
     }
 
-    public void setNavlatestdate(Date navlatestdate) {
-        this.navlatestdate = navlatestdate;
+    public void setNavLatestDate(Date navlatestdate) {
+        this.navLatestDate = navlatestdate;
     }
 }
