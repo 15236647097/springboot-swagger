@@ -1,13 +1,12 @@
-package util;
+package com.neo.secvice;
 
 import com.neo.entity.CovarianceModel;
-import com.neo.mapper.CovarianceMapper;
-import com.neo.mapper.FundCalculateDataMapper;
 import com.neo.mapper.CovarianceMapper;
 import com.neo.mapper.FundCalculateDataMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +19,7 @@ import static util.ConstantUtil.*;
  * Date: 2017/11/23
  * Desc:返回基金数据
  */
+@Service
 public class ReturnCalculateData {
 
     private static final Logger logger= LoggerFactory.getLogger(ReturnCalculateData.class);

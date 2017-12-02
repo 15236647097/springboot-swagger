@@ -10,6 +10,9 @@ import util.MVO;
 
 import java.util.*;
 
+import static util.ConstantUtil.SUCCEED_STATUS;
+import static util.ConstantUtil.TYPE_OF_DAY;
+
 /**
  * Created by wangyinuo on 2017/11/27.
  */
@@ -18,6 +21,8 @@ public class FundGroupService {
     @Autowired
     private FundGroupMapper fundGroupMapper;
 
+    @Autowired
+    ReturnCalculateData returnCalculateData;
     /**
      * 查询所有基金组合
      * @return
@@ -150,18 +155,32 @@ public class FundGroupService {
      */
     public RevenueContributionReturn efficientFrontier(String id){
         List<FundGroupDetails> fundidlist = fundGroupMapper.efficientFrontier(id);
-
+        List<String> ls = new ArrayList<>();
+        for(FundGroupDetails fgd: fundidlist){
+            ls.add(fgd.getFund_id());
+        }
         Map<String,Object> map = new HashMap<String,Object>();
         RevenueContributionReturn aReturn = new RevenueContributionReturn();
         Map<String,String> _links = new HashMap<String,String>();
         List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
         List<float [][]> resust = null;
-        Double [] ExpReturn = { 0.0054, 0.0531, 0.0779, 0.0934, 0.0130 };
-        Double[][] ExpCovariance = {{0.0569,  0.0092,  0.0039,  0.0070,  0.0022},
+        //Double [] ExpReturn = { 0.0054, 0.0531, 0.0779, 0.0934, 0.0130 };
+        /*Double[][] ExpCovariance = {{0.0569,  0.0092,  0.0039,  0.0070,  0.0022},
                 {0.0092,  0.0380,  0.0035,  0.0197,  0.0028},
                 {0.0039,  0.0035,  0.0997,  0.0100,  0.0070},
                 {0.0070,  0.0197,  0.0100,  0.0461,  0.0050},
-                {0.0022,  0.0028,  0.0070,  0.0050,  0.0573}};
+                {0.0022,  0.0028,  0.0070,  0.0050,  0.0573}};*/
+        Double[] ExpReturn = null;
+        Double[][] ExpCovariance = null;
+        CovarianceModel covarianceModel =null;
+        covarianceModel = returnCalculateData.getYieldRatioArr("2017-10-27",ls,TYPE_OF_DAY);
+        if (covarianceModel.getStatus().equals(SUCCEED_STATUS)){
+            ExpReturn = covarianceModel.getYieldRatioArr();
+        }
+        covarianceModel = returnCalculateData.getCovarianceArr("2017-10-27",ls,TYPE_OF_DAY);
+        if (covarianceModel.getStatus().equals(SUCCEED_STATUS)){
+            ExpCovariance = covarianceModel.getCovarianceArr();
+        }
         resust = MVO.efficientFrontier(ExpReturn,ExpCovariance,10);
         for (int i = 0;i<10;i++){
             Map<String,Object> _items = new HashMap<String,Object>();
@@ -169,11 +188,9 @@ public class FundGroupService {
             _items.put("x",resust.get(0)[i][0]);
             _items.put("y",resust.get(1)[i][0]);
                 List<Float> list1 = new ArrayList<Float>();
-                list1.add(resust.get(2)[0][i]);
-                list1.add(resust.get(2)[1][i]);
-                list1.add(resust.get(2)[2][i]);
-                list1.add(resust.get(2)[3][i]);
-                list1.add(resust.get(2)[4][i]);
+                for(int t = 0;t<ls.size();t++){
+                    list1.add(resust.get(2)[t][i]);
+                }
                 _items.put("w",list1);
 
             list.add(_items);
