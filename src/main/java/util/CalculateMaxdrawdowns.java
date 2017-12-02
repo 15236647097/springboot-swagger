@@ -22,6 +22,7 @@ public class CalculateMaxdrawdowns {
         CalculateMaxdrawdown calculateMaxdrawdown= null;
         Double maxdrawdownValue=null;
         try {
+
             calculateMaxdrawdown = new CalculateMaxdrawdown();
             result=calculateMaxdrawdown.calculateMaxdrawdown(1,temp);
 
