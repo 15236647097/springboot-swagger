@@ -27,7 +27,6 @@ public class CalculateMaxdrawdowns {
 
             if(result!=null && result[0]!=null){
 
-
                 maxdrawdownValue=Double.parseDouble(result[0].toString());
 
             }
