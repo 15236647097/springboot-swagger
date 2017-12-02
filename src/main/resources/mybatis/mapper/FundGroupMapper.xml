@@ -43,7 +43,7 @@
     </select>
 
     <select id="efficientFrontier" resultType="com.neo.entity.FundGroupDetails">
-        select fund_id from fund_group_details where fund_group_id = #{id}
+        select fund_id from fund_group_details where fund_group_id = #{uuid}
     </select>
 
     <update id="updateStatus" parameterType="map">

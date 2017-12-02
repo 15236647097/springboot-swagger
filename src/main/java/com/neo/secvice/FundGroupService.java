@@ -148,8 +148,9 @@ public class FundGroupService {
      * 有效前沿线
      * @return
      */
-    public RevenueContributionReturn efficientFrontier(String uuid){
-        List<FundGroupDetails> fundidlist = fundGroupMapper.efficientFrontier(uuid);
+    public RevenueContributionReturn efficientFrontier(String id){
+        List<FundGroupDetails> fundidlist = fundGroupMapper.efficientFrontier(id);
+
         Map<String,Object> map = new HashMap<String,Object>();
         RevenueContributionReturn aReturn = new RevenueContributionReturn();
         Map<String,String> _links = new HashMap<String,String>();
