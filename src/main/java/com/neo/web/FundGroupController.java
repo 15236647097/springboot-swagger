@@ -71,8 +71,8 @@ public class FundGroupController {
      * @return
      */
     @RequestMapping("/api/asset-allocation/products/{groupId}/effective-frontier-points")
-    public RevenueContributionReturn efficientFrontier(@PathVariable("groupId") String uuid){
-        RevenueContributionReturn aReturn = fundGroupService.efficientFrontier(uuid);
+    public RevenueContributionReturn efficientFrontier(@PathVariable("groupId") String id){
+        RevenueContributionReturn aReturn = fundGroupService.efficientFrontier(id);
         return aReturn;
     }
 

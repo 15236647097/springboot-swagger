@@ -23,7 +23,7 @@ public interface FundGroupMapper {
 
     List<Interval> getProportion(String id);
 
-    List<FundGroupDetails> efficientFrontier(String id);
+    List<FundGroupDetails> efficientFrontier(String uuid);
 
     List<Interval> getinterval(Map map);
 
