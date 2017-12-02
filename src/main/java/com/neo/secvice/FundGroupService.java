@@ -150,6 +150,7 @@ public class FundGroupService {
      */
     public RevenueContributionReturn efficientFrontier(String id){
         List<FundGroupDetails> fundidlist = fundGroupMapper.efficientFrontier(id);
+
         Map<String,Object> map = new HashMap<String,Object>();
         RevenueContributionReturn aReturn = new RevenueContributionReturn();
         Map<String,String> _links = new HashMap<String,String>();
