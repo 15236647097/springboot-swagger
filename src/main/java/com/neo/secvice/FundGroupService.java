@@ -22,7 +22,7 @@ public class FundGroupService {
     private FundGroupMapper fundGroupMapper;
 
     @Autowired
-    ReturnCalculateData returnCalculateData;
+    ReturnCalculateDataService returnCalculateDataService;
     /**
      * 查询所有基金组合
      * @return
@@ -173,11 +173,11 @@ public class FundGroupService {
         Double[] ExpReturn = null;
         Double[][] ExpCovariance = null;
         CovarianceModel covarianceModel =null;
-        covarianceModel = returnCalculateData.getYieldRatioArr("2017-10-27",ls,TYPE_OF_DAY);
+        covarianceModel = returnCalculateDataService.getYieldRatioArr("2017-10-27",ls,TYPE_OF_DAY);
         if (covarianceModel.getStatus().equals(SUCCEED_STATUS)){
             ExpReturn = covarianceModel.getYieldRatioArr();
         }
-        covarianceModel = returnCalculateData.getCovarianceArr("2017-10-27",ls,TYPE_OF_DAY);
+        covarianceModel = returnCalculateDataService.getCovarianceArr("2017-10-27",ls,TYPE_OF_DAY);
         if (covarianceModel.getStatus().equals(SUCCEED_STATUS)){
             ExpCovariance = covarianceModel.getCovarianceArr();
         }
