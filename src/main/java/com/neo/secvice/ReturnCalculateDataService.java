@@ -20,9 +20,9 @@ import static util.ConstantUtil.*;
  * Desc:返回基金数据
  */
 @Service
-public class ReturnCalculateData {
+public class ReturnCalculateDataService {
 
-    private static final Logger logger= LoggerFactory.getLogger(ReturnCalculateData.class);
+    private static final Logger logger= LoggerFactory.getLogger(ReturnCalculateDataService.class);
 
     @Autowired
     private FundCalculateDataMapper fundCalculateDataMapper;

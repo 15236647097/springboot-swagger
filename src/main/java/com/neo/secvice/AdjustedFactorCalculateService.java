@@ -1,14 +1,16 @@
-package util;
+package com.neo.secvice;
 
 import com.neo.entity.FundNetVal;
-import com.neo.mapper.FundNetValMapper;
 import com.neo.job.entity.JobTimeRecord;
 import com.neo.job.service.JobTimeService;
-import com.neo.secvice.FundCalculateService;
+import com.neo.mapper.FundNetValMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,7 +26,8 @@ import static util.ConstantUtil.*;
  * Date: 2017/11/25
  * Desc:复权因子计算
  */
-public class AdjustedFactorCalculate {
+@Service
+public class AdjustedFactorCalculateService {
 
     @Autowired
     private JobTimeService jobTimeService;
@@ -33,14 +36,14 @@ public class AdjustedFactorCalculate {
     @Autowired
     private FundNetValMapper fundNetValMapper;
 
-    private static final Logger logger= LoggerFactory.getLogger(AdjustedFactorCalculate.class);
+    private static final Logger logger= LoggerFactory.getLogger(AdjustedFactorCalculateService.class);
 
     private SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 
     /*
      * 计算基金复权因子
      */
-    public void calculateAdjustedFactor(){
+    public void  calculateAdjustedFactor(){
         //查询TriggerJob 上次执行时间
         JobTimeRecord jobTimeRecord=jobTimeService.selectJobTimeRecord(ADJUSTED_FACTOR_TRIGGER);
         Date selectDate=new Date();
