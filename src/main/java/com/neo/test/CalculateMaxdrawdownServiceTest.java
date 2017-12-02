@@ -27,13 +27,13 @@ public class CalculateMaxdrawdownServiceTest {
     /*
       * 计算最大回撤率
       */
-    public Double calculateMaxdrawdown( double[] dataArr){
+    public Double calculateMaxdrawdown( double[] temp){
         Object[] result=null;
         CalculateMaxdrawdown calculateMaxdrawdown= null;
         Double maxdrawdownValue=null;
         try {
             calculateMaxdrawdown = new CalculateMaxdrawdown();
-            result=calculateMaxdrawdown.calculateMaxdrawdown(1,dataArr);
+            result=calculateMaxdrawdown.calculateMaxdrawdown(1,temp);
 
             if(result!=null && result[0]!=null){
                 maxdrawdownValue=Double.parseDouble(result[0].toString());
