@@ -51,7 +51,7 @@ public class MVO {
         Object[] resust = null;
         try{
             MatLab ml = new MatLab();
-            resust = ml.portstat(2,ExpReturn,ExpCovariance,PortWts);
+            resust = ml.riskAndIncome(2,ExpReturn,ExpCovariance,PortWts);
             MWNumericArray temp = (MWNumericArray)resust[0];
             float [][] weights=(float[][])temp.toFloatArray();
             MWNumericArray temp1 = (MWNumericArray)resust[1];
