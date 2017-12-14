@@ -1,7 +1,7 @@
 package com.neo.test;
 
 import com.mathworks.toolbox.javabuilder.MWException;
-import com.yihui.MatLab;
+import com.yihui.*;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +29,10 @@ public class CalculateMaxdrawdownServiceTest {
       */
     public Double calculateMaxdrawdown( double[] temp){
         Object[] result=null;
-        MatLab matLab= null;
+        MATLAB matLab= null;
         Double maxdrawdownValue=null;
         try {
-            matLab = new MatLab();
+            matLab = new MATLAB();
             result=matLab.calculateMaxdrawdown(1,temp);
 
             if(result!=null && result[0]!=null){

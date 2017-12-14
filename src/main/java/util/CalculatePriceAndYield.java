@@ -37,7 +37,7 @@ public class CalculatePriceAndYield {
         }
 
         try {
-            MatLab calculatePriceToYield=new MatLab();
+            MATLAB calculatePriceToYield=new MATLAB();
             result=calculatePriceToYield.calculatePriceToYield(1,tickSeriesArr,tickTime,method);
 
             if(result!=null && result[0]!=null){
@@ -81,7 +81,7 @@ public class CalculatePriceAndYield {
         }
 
         try {
-            MatLab calculateYieldToPrice=new MatLab();
+            MATLAB calculateYieldToPrice=new MATLAB();
             result=calculateYieldToPrice.calculateYieldToPrice(1,retSeriesArr,startPrice,retIntervals,startTime,method);
 
             if(result!=null && result[0]!=null){

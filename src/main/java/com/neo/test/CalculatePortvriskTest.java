@@ -1,7 +1,7 @@
 package com.neo.test;
 
 import com.mathworks.toolbox.javabuilder.MWException;
-import com.yihui.MatLab;
+import com.yihui.*;
 import org.junit.Test;
 
 /**
@@ -56,7 +56,7 @@ public class CalculatePortvriskTest {
         Double riskThreshold=1-confidenceInterval;
 
         try {
-            MatLab matLab= new MatLab();
+            MATLAB matLab= new MATLAB();
             result=matLab.calculatePortvrisk(1,portReturn,portRisk,riskThreshold,portValue);
 
             if(result!=null && result[0]!=null){

@@ -21,8 +21,6 @@ public class FundGroupService {
     @Autowired
     private FundGroupMapper fundGroupMapper;
 
-    @Autowired
-    ReturnCalculateDataService returnCalculateDataService;
     /**
      * 查询所有基金组合
      * @return
@@ -154,10 +152,10 @@ public class FundGroupService {
      * @return
      */
     public RevenueContributionReturn efficientFrontier(String id){
-        Map<String,Object> map = new HashMap<String,Object>();
+        Map<String,Object> map = new HashMap<>();
         RevenueContributionReturn aReturn = new RevenueContributionReturn();
-        Map<String,String> _links = new HashMap<String,String>();
-        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+        Map<String,String> _links = new HashMap<>();
+        List<Map<String,Object>> list = new ArrayList<>();
         List<float [][]> resust = null;
         Double [] ExpReturn = { 0.0054, 0.0531, 0.0779, 0.0934, 0.0130 };
         Double[][] ExpCovariance = {{0.0569,  0.0092,  0.0039,  0.0070,  0.0022},
@@ -316,6 +314,12 @@ public class FundGroupService {
         return aReturn;
     }
 
+    /**
+     * 分段数据
+     * @param id
+     * @param slidebarType（risk风险率     income收益率）
+     * @return
+     */
     public RevenueContributionReturn getScaleMark(String id,String slidebarType){
         RevenueContributionReturn smk = new RevenueContributionReturn();
         List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
@@ -346,6 +350,12 @@ public class FundGroupService {
         return smk;
     }
 
+    public Double sharpeRatio(){
+        Double[] asset ={1.2000,   1.3000  ,  0.9000 ,   1.5000};
+        Double cash = 0.0135;
+        Double sharpeRatio = MVO.sharpeRatio(asset,cash);
+        return sharpeRatio;
+    }
     public double getFundGroupIncome(String id,String starttime,String endtime){
         CalculatePriceAndYield cpa = new CalculatePriceAndYield();
         List<FundGroupBuy> list = fundGroupMapper.getFundGroupBuy(id);
@@ -392,31 +402,5 @@ public class FundGroupService {
             fr.setAssetsRatios(list);
         }
         return fr;
-    }
-
-
-    /**    不一定用
-     * 预期年化收益(action=calcExpectedAnnualizedReturn), 预期最大回撤(action=calcExpectedMaxPullback)
-     * @param id
-     * @param selecttype
-     * @param returntype
-     * @param num
-     * @return
-     */
-    public Map<String,Object> daidingselectReturnAndPullback(String id, String selecttype, String returntype, float num){
-        Map<String,Object> map = new HashMap<String,Object>();
-        map.put("id",id);
-        map.put("type",selecttype);
-        map.put("num",num);
-        Interval interval = fundGroupMapper.selectReturnAndPullback(map);
-        map.clear();
-        if(returntype.equalsIgnoreCase("1")) {
-            map.put("name", "预期年化收益");
-            map.put("value", interval.getExpected_annualized_return());
-        }else {
-            map.put("name", "预期最大回撤");
-            map.put("value", interval.getExpected_max_retracement());
-        }
-        return map;
     }
 }

@@ -1,7 +1,7 @@
 package com.neo.test;
 
 import com.mathworks.toolbox.javabuilder.MWException;
-import com.yihui.MatLab;
+import com.yihui.*;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,7 +72,7 @@ public class CalculatePriceAndYieldServiceTest {
         }
 
         try {
-            MatLab matLab= new MatLab();
+            MATLAB matLab= new MATLAB();
             result=matLab.calculatePriceToYield(1,tickSeriesArr,tickTime,method);
 
             if(result!=null && result[0]!=null){
@@ -116,7 +116,7 @@ public class CalculatePriceAndYieldServiceTest {
         }
 
         try {
-            MatLab matLab= new MatLab();
+            MATLAB matLab= new MATLAB();
             result=matLab.calculateYieldToPrice(1,retSeriesArr,startPrice,retIntervals,startTime,method);
 
             if(result!=null && result[0]!=null){
