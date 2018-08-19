@@ -1,16 +1,18 @@
 package com.neo.web;
 
+import com.neo.entity.TestEntity;
 import com.neo.returnType.*;
 import com.neo.secvice.FundGroupService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -114,9 +116,10 @@ public class FundGroupController {
      */
     @ApiOperation("风险控制手段与通知")
     @RequestMapping(value = "/api/asset-allocation/products/{uuid}/risk-notifications", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Return getmeansAndNoticesRetrun(@PathVariable("uuid") String uuid){
-        Return man = fundGroupService.getmeansAndNoticesRetrun();
-        return man;
+    public String getmeansAndNoticesRetrun(@PathVariable("uuid") String uuid){
+        //Return man = fundGroupService.getmeansAndNoticesRetrun();
+        //return man;
+        return "1213";
     }
 
     /**
@@ -151,4 +154,58 @@ public class FundGroupController {
         double income = fundGroupService.getFundGroupIncome(id,starttime,endtime);
         return income;
     }*/
+    @RequestMapping(value = "/getList/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<TestEntity> getFundGroupIncome(@PathVariable("id") int id, ServletResponse servletResponse){
+        HttpServletResponse response = (HttpServletResponse)servletResponse;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        List<TestEntity> aa = new ArrayList<>();
+        if (id == 1){
+            for (int i = 1;i<5;i++){
+                TestEntity te = new TestEntity();
+                te.setName("邮银财富·瑞享2017第106期");
+                te.setBuyMoney("60,000.00");
+                te.setBreathDay("2018/01/08");
+                te.setExpectedAnnualizedRateOfReturn("4.95");
+                te.setInvestmentHorizon("142天");
+                te.setRiskRating("中低");
+                te.setType("人民币");
+                te.setCapitalPreservation("否");
+                te.setIndex("position"+i);
+                te.setCode("7268692"+i);
+                aa.add(te);
+            }
+        }else if(id == 2){
+            for (int i = 4;i<7;i++){
+                TestEntity te = new TestEntity();
+                te.setName("邮银财富·瑞享2017第106期");
+                te.setBuyMoney("60,000.00");
+                te.setBreathDay("2018/01/08");
+                te.setExpectedAnnualizedRateOfReturn("4.95");
+                te.setInvestmentHorizon("142天");
+                te.setRiskRating("中低");
+                te.setType("人民币");
+                te.setCapitalPreservation("否");
+                te.setIndex("entrust"+i);
+                te.setCode("7268692"+i);
+                aa.add(te);
+            }
+        }else if(id == 3){
+            for (int i = 1;i<9;i++){
+                TestEntity te = new TestEntity();
+                te.setName("邮银财富·瑞享2017第106期");
+                te.setBuyMoney("60,000.00");
+                te.setBreathDay("2018/01/08");
+                te.setExpectedAnnualizedRateOfReturn("4.95");
+                te.setInvestmentHorizon("142天");
+                te.setRiskRating("中低");
+                te.setType("人民币");
+                te.setCapitalPreservation("否");
+                te.setIndex("trading"+i);
+                te.setCode("7268692"+i);
+                aa.add(te);
+            }
+        }
+        return aa;
+    }
 }
