@@ -1,4 +1,4 @@
-package util;
+package com.neo.util;
 
 /**
  * Author: yongquan.xiong

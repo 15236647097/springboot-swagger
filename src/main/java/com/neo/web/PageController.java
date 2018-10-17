@@ -3,8 +3,6 @@ package com.neo.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import util.MVO;
 
 /**
  * Created by wangyinuo on 2017/11/20.

@@ -1,4 +1,4 @@
-package com.neo.test;
+package java.com.neo;
 
 import com.mathworks.toolbox.javabuilder.MWException;
 import com.yihui.*;

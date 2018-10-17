@@ -5,13 +5,8 @@ import com.neo.returnType.*;
 import com.neo.mapper.FundGroupMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import util.CalculatePriceAndYield;
-import util.MVO;
 
 import java.util.*;
-
-import static util.ConstantUtil.SUCCEED_STATUS;
-import static util.ConstantUtil.TYPE_OF_DAY;
 
 /**
  * Created by wangyinuo on 2017/11/27.
@@ -179,7 +174,6 @@ public class FundGroupService {
         if (covarianceModel.getStatus().equals(SUCCEED_STATUS)){
             ExpCovariance = covarianceModel.getCovarianceArr();
         }*/
-        resust = MVO.efficientFrontier(ExpReturn,ExpCovariance,10);
         for (int i = 0;i<10;i++){
             Map<String,Object> _items = new HashMap<String,Object>();
             _items.put("id",1);
@@ -348,27 +342,6 @@ public class FundGroupService {
         smk.set_schemaVersion("0.1.1");
         smk.set_serviceId("资产配置");
         return smk;
-    }
-
-    public Double sharpeRatio(){
-        Double[] asset ={1.2000,   1.3000  ,  0.9000 ,   1.5000};
-        Double cash = 0.0135;
-        Double sharpeRatio = MVO.sharpeRatio(asset,cash);
-        return sharpeRatio;
-    }
-    public double getFundGroupIncome(String id,String starttime,String endtime){
-        CalculatePriceAndYield cpa = new CalculatePriceAndYield();
-        List<FundGroupBuy> list = fundGroupMapper.getFundGroupBuy(id);
-        double num = 0;
-        for(FundGroupBuy fundGroupBuy : list){
-            List<FundNetValue> fundNetValues = fundGroupMapper.getFundNetValue(fundGroupBuy.getFund_id(),starttime,endtime);
-            List<Double> list1 = new ArrayList<Double>();
-            list1.add(fundNetValues.get(0).getNavadj());
-            list1.add(fundNetValues.get(fundNetValues.size()-1).getNavadj());
-            list1 = cpa.calculatePriceToYield(list1,"Simple");
-            num+=list1.get(0)*fundGroupBuy.getProportion();
-        }
-        return num;
     }
 
     /**

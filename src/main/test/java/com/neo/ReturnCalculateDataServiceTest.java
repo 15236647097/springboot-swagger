@@ -1,4 +1,4 @@
-package com.neo.test;
+package java.com.neo;
 
 import com.neo.entity.CovarianceModel;
 import com.neo.mapper.CovarianceMapper;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import static util.ConstantUtil.*;
+import static com.neo.util.ConstantUtil.*;
 
 /**
  * Author: yongquan.xiong

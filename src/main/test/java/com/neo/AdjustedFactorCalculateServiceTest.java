@@ -1,4 +1,4 @@
-package com.neo.test;
+package java.com.neo;
 
 import com.neo.entity.FundNetVal;
 import com.neo.mapper.FundNetValMapper;
@@ -20,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static util.ConstantUtil.*;
+import static com.neo.util.ConstantUtil.*;
 
 /**
  * Author: yongquan.xiong

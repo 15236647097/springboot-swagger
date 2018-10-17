@@ -1,4 +1,4 @@
-package com.neo.test;
+package java.com.neo;
 
 import com.neo.entity.CovarianceModel;
 import com.neo.mapper.CovarianceMapper;
@@ -20,7 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static util.ConstantUtil.*;
+import static com.neo.util.ConstantUtil.*;
 
 /**
  * Author: yongquan.xiong

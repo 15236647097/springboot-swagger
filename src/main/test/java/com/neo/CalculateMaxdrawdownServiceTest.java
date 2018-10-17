@@ -1,33 +1,42 @@
-package util;
+package java.com.neo;
 
 import com.mathworks.toolbox.javabuilder.MWException;
-import com.yihui.MATLAB;
+import com.yihui.*;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Author: yongquan.xiong
  * Date: 2017/11/28
- * Desc:计算最大回撤（使用 MATLAB）
+ * Desc:计算最大回撤
  */
-public class CalculateMaxdrawdowns {
+public class CalculateMaxdrawdownServiceTest {
+    private static final Logger logger= LoggerFactory.getLogger(CalculateMaxdrawdownServiceTest.class);
 
-    private static final Logger logger= LoggerFactory.getLogger(CalculateMaxdrawdowns.class);
+    @Test
+    public void test(){
+
+        double[] temp={1,2,3,10,7};
+        Double value=calculateMaxdrawdown(temp);
+
+        System.out.println(value);
+    }
+
 
     /*
-     * 计算最大回撤率
-     */
+      * 计算最大回撤率
+      */
     public Double calculateMaxdrawdown( double[] temp){
         Object[] result=null;
+        MATLAB matLab= null;
         Double maxdrawdownValue=null;
         try {
-            MATLAB matLab= new MATLAB();
+            matLab = new MATLAB();
             result=matLab.calculateMaxdrawdown(1,temp);
 
             if(result!=null && result[0]!=null){
-
                 maxdrawdownValue=Double.parseDouble(result[0].toString());
-
             }
 
         } catch (MWException e) {

@@ -15,7 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static util.ConstantUtil.*;
+import static com.neo.util.ConstantUtil.*;
 
 
 /**
