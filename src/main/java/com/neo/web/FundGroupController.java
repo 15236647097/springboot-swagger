@@ -1,10 +1,12 @@
 package com.neo.web;
 
 import com.neo.entity.TestEntity;
+import com.neo.entity.YmlFileEntity;
 import com.neo.returnType.*;
 import com.neo.secvice.FundGroupService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +26,8 @@ public class FundGroupController {
     @Autowired
     FundGroupService fundGroupService;
 
+    @Autowired
+    private YmlFileEntity ymlFileEntity;
     /**
      * 查询所有基金组合
      * @return
@@ -33,6 +37,11 @@ public class FundGroupController {
     public FundAllReturn selectAllFundGroup(){
         FundAllReturn far = fundGroupService.selectAllFundGroup();
         return far;
+    }
+    @ApiOperation("返回所有基金组合产品信息")
+    @RequestMapping(value = "/api/asset-allocation/returnString", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String returnString(){
+        return ymlFileEntity.getSimpleProp();
     }
 
     /**
@@ -57,7 +66,7 @@ public class FundGroupController {
     @ApiOperation("预期年化收益(action=calcExpectedAnnualizedReturn), 预期最大回撤(action=calcExpectedMaxPullback)")
     @RequestMapping(value = "/api/asset-allocation/product-groups/{groupId}/sub-groups/{subGroupId}/opt", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String,Object> selectReturnAndPullback(@PathVariable("groupId") String id,@PathVariable("subGroupId") String subGroupId,String returntype){
-        Map<String,Object> map = new HashMap<String,Object>();
+        Map<String,Object> map;
         map= fundGroupService.selectReturnAndPullback(id,returntype,subGroupId);
         return map;
     }

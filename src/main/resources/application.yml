@@ -1,0 +1,35 @@
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.neo.entity
+spring:
+  mvc:
+  static-path-pattern: /**
+  resources:
+    static-locations: classpath:/static/,classpath:/public/
+  freemarker:
+    request-context-attribute: request
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.10:3306/choice?useUnicode=true&characterEncoding=utf-8
+    username: sa
+    password: 1qaz@WSX
+server:
+  port: 8088
+
+ymlFileEntity:
+  simpleProp: simplePropValue
+myProps: #自定义的属性和值
+  simpleProp: simplePropValue
+  arrayProps: 1,2,3,4,5
+  listProp1:
+    - name: Solin
+      value: SolinValue
+    - name: Tom
+      value: TomValue
+  listProp2:
+    - config1Value1
+    - config2Value2
+  mapProps:
+    key1: value1
+    key2: value2

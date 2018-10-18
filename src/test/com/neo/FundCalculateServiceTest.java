@@ -1,4 +1,4 @@
-package java.com.neo;
+package com.neo;
 
 //import static org.junit.Assert.*;
 

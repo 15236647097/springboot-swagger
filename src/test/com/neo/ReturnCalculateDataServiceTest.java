@@ -1,4 +1,4 @@
-package java.com.neo;
+package com.neo;
 
 import com.neo.entity.CovarianceModel;
 import com.neo.mapper.CovarianceMapper;

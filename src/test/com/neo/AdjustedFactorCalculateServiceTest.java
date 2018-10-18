@@ -1,4 +1,4 @@
-package java.com.neo;
+package com.neo;
 
 import com.neo.entity.FundNetVal;
 import com.neo.mapper.FundNetValMapper;
