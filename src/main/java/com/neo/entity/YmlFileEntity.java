@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by wyn on 2018/10/18.
  */
 @Component
-@ConfigurationProperties(prefix="ymlFileEntity",locations = "classpath:application.yml")
+@ConfigurationProperties(prefix="ymlFileEntity")
 public class YmlFileEntity {
     private String simpleProp;
     private String[] arrayProps;

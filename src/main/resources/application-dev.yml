@@ -14,14 +14,11 @@ spring:
     url: jdbc:mysql://192.168.1.10:3306/choice?useUnicode=true&characterEncoding=utf-8
     username: sa
     password: 1qaz@WSX
-  profiles:
-    active: dev
 server:
   port: 8088
 
-
 ymlFileEntity:
-  simpleProp: simplePropValue
+  simpleProp: simplePropValue-dev
   arrayProps: 1,2,3,4,5
   listProp1:
     - name: Solin

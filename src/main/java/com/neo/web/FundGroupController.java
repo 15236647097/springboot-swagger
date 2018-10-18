@@ -41,6 +41,11 @@ public class FundGroupController {
     @ApiOperation("返回所有基金组合产品信息")
     @RequestMapping(value = "/api/asset-allocation/returnString", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String returnString(){
+        System.out.println(ymlFileEntity.getSimpleProp());
+        System.out.println(ymlFileEntity.getArrayProps());
+        System.out.println(ymlFileEntity.getListProp1());
+        System.out.println(ymlFileEntity.getListProp2());
+        System.out.println(ymlFileEntity.getMapProps());
         return ymlFileEntity.getSimpleProp();
     }
 
