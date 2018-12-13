@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class PageController {
     @RequestMapping("add")
     public String add(){
+        System.out.println(123);
         return "add.jsp";
     }
 
