@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
@@ -35,19 +34,19 @@ public class ymlFileTest {
 
     private static final Logger logger= LoggerFactory.getLogger(ymlFileTest.class);
 
-    private SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-
     @Test
     public void calculateAdjustedFactor(){
         System.out.println(ymlFileEntity.getSimpleProp());
 
-        List names = new ArrayList();
+        logger.info("测试开始了");
+        List<String> names = new ArrayList<>();
 
         names.add("Google");
         names.add("Runoob");
         names.add("Taobao");
         names.add("Baidu");
         names.add("Sina");
+        names.forEach(System.out::println);
         try {
             System.out.println("HostName"+InetAddress.getLocalHost().getHostName());
             System.out.println(InetAddress.getLocalHost().getHostAddress());
@@ -56,7 +55,6 @@ public class ymlFileTest {
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-//        names.forEach(System.out::println);
     }
 
     @Test
