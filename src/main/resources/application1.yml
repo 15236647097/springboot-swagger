@@ -10,10 +10,10 @@ spring:
   freemarker:
     request-context-attribute: request
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.1.10:3306/choice?useUnicode=true&characterEncoding=utf-8
-    username: sa
-    password: 1qaz@WSX
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.12.37:3306/choice?useUnicode=true&characterEncoding=utf-8
+    username: user
+    password: user
   profiles:
     active: dev
 server:

@@ -47,4 +47,6 @@ public interface FundGroupMapper {
 
     List<FundNetValue> getFundNetValue(@Param("id") String id,@Param("starttime") String starttime,@Param("endtime") String endtime);
 
+    FundGroup1 getFundList(@Param("id") String id);
+
 }

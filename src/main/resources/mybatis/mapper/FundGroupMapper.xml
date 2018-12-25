@@ -96,4 +96,34 @@
     <select id="getFundGroupBuy" parameterType="java.lang.String" resultType="com.neo.entity.FundGroupBuy">
         select * from fundgroupbuydetail c where c.fund_group_buy_id = #{id}
     </select>
+    <select id="getFundList" parameterType="java.lang.String" resultMap="baseResultMap">
+        select * from fund_group a,fund_group_sub b
+        where a.id = #{id} and a.id = b.fund_group_id
+    </select>
+    <resultMap id="baseResultMap" type="com.neo.entity.FundGroup1">
+        <result column="id" property="id"/>
+        <result column="fund_group_name" property="fund_group_name"/>
+        <result column="status" property="status"/>
+        <collection property="fundGroupDetails1s" ofType="com.neo.entity.FundGroupDetails1">
+            <result column="id" property="id"/>
+            <result column="fund_group_id" property="fund_group_id"/>
+            <result column="risk_num" property="risk_num"/>
+        </collection>
+    </resultMap>
+
+    <!--oracle-->
+    <!--<select id="getFundList" parameterType="java.lang.String" resultMap="baseResultMap">-->
+        <!--select * from T_UMS_USER a,T_UMS_USER_OPER_LOG b-->
+        <!--where a.ID = #{id} and a.ID = b.USER_ID-->
+    <!--</select>-->
+    <!--<resultMap id="baseResultMap" type="com.neo.entity.FundGroup1">-->
+        <!--<result column="ID" property="id"/>-->
+        <!--<result column="IPS_USER_NAME" property="fund_group_name"/>-->
+        <!--<result column="STATUS" property="status"/>-->
+        <!--<collection property="fundGroupDetails1s" ofType="com.neo.entity.FundGroupDetails1">-->
+            <!--<result column="LOG_ID" property="id"/>-->
+            <!--<result column="USER_ID" property="fund_group_id"/>-->
+            <!--<result column="OPER_TYPE" property="risk_num"/>-->
+        <!--</collection>-->
+    <!--</resultMap>-->
 </mapper>

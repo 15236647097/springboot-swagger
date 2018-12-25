@@ -163,11 +163,10 @@ public class FundGroupController {
         return smk;
     }
 
-    /*@RequestMapping("/getFundGroupIncome/{id}")
-    public double getFundGroupIncome(@PathVariable("id") String id,String starttime,String endtime){
-        double income = fundGroupService.getFundGroupIncome(id,starttime,endtime);
-        return income;
-    }*/
+    @RequestMapping(value = "/getFundGroupIncome/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void getFundGroupIncome(@PathVariable("id") String id){
+        fundGroupService.getFundList(id);
+    }
     @RequestMapping(value = "/getList/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<TestEntity> getFundGroupIncome(@PathVariable("id") int id, ServletResponse servletResponse){

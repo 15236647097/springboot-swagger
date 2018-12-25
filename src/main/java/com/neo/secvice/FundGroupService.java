@@ -376,4 +376,9 @@ public class FundGroupService {
         }
         return fr;
     }
+
+    public void getFundList(String id){
+        FundGroup1 fundGroup1 = fundGroupMapper.getFundList(id);
+        System.out.println(fundGroup1.getFundGroupDetails1s().size());
+    }
 }
