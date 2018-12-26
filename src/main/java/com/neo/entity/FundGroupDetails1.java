@@ -1,8 +1,5 @@
 package com.neo.entity;
 
-import java.util.Date;
-import java.util.List;
-
 /**
  * Created by wangyinuo on 2017/11/16.
  */

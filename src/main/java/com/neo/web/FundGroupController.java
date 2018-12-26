@@ -38,7 +38,7 @@ public class FundGroupController {
         FundAllReturn far = fundGroupService.selectAllFundGroup();
         return far;
     }
-    @ApiOperation("返回所有基金组合产品信息")
+    @ApiOperation("测试yml文件数据")
     @RequestMapping(value = "/api/asset-allocation/returnString", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String returnString(){
         System.out.println(ymlFileEntity.getSimpleProp());
