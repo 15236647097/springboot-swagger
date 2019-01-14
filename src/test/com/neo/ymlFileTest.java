@@ -8,9 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import java.sql.*;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
@@ -93,6 +97,69 @@ public class ymlFileTest {
         System.out.println("分钟：" + time.getMinute() );
         System.out.println("秒：" + time.getSecond() );
         System.out.println("秒：" + time.getLong(ChronoField.CLOCK_HOUR_OF_DAY) );
+    }
+    // JDBC 驱动名及数据库 URL
+    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/choice?useUnicode=true&characterEncoding=utf-8&useSSL=false";
+
+    // 数据库的用户名与密码，需要根据自己的设置
+    static final String USER = "root";
+    static final String PASS = "root";
+    @Test
+    public void testJdbc(){
+        Connection conn = null;
+        Statement stmt = null;
+        try{
+            // 注册 JDBC 驱动
+            Class.forName(JDBC_DRIVER);
+
+            // 打开链接
+            System.out.println("连接数据库...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            // 执行查询
+            System.out.println(" 实例化Statement对象...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT id, fund_group_name, status FROM fund_group";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // 展开结果集数据库
+            while(rs.next()){
+                // 通过字段检索
+                int id  = rs.getInt("id");
+                String name = rs.getString("fund_group_name");
+                String url = rs.getString("status");
+
+                // 输出数据
+                System.out.print("ID: " + id);
+                System.out.print(", fund_group_name: " + name);
+                System.out.print(", status: " + url);
+                System.out.print("\n");
+            }
+            // 完成后关闭
+            rs.close();
+            stmt.close();
+            conn.close();
+        }catch(SQLException se){
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        }catch(Exception e){
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        }finally{
+            // 关闭资源
+            try{
+                if(stmt!=null) stmt.close();
+            }catch(SQLException se2){
+            }// 什么都不做
+            try{
+                if(conn!=null) conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        System.out.println("Goodbye!");
     }
 
 }

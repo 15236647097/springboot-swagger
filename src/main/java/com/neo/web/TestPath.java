@@ -9,7 +9,7 @@ import javax.ws.rs.Path;
  * Created by wyn on 2018/10/22.
  */
 @Component
-@Path("/test")
+@Path("/testPath")
 public class TestPath {
 
     @Path("/select")
