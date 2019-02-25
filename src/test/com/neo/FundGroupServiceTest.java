@@ -20,8 +20,8 @@ public class FundGroupServiceTest {
     FundGroupService fundGroupService;
 
     @Test
-    public void java8LocalDate(){
-        fundGroupService.getFundList("7065");
+    public void getFundList(){
+        fundGroupService.getFundList("1");
     }
 
 }

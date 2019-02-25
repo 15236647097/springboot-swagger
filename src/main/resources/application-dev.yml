@@ -3,17 +3,44 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.neo.entity
 spring:
-  mvc:
-  static-path-pattern: /**
+  mvc.static-path-pattern: /**
   resources:
     static-locations: classpath:/static/,classpath:/public/
   freemarker:
     request-context-attribute: request
+  jpa:
+    hibernate:
+      ddl-auto: update
+  redis:
+    database: 0
+    host: 192.168.1.10
+    port: 6379
+    password: redis123
+    ssl: false
+    timeout: 1800000ms
+    jedis:
+      pool:
+        max-active: 10
+        max-idle: 5
+        max-wait: 5000
+        min-idle: 5
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/choice?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: root
-    password: root
+    dbcp:
+      url: jdbc:mysql://127.0.0.1:3306/choice?useUnicode=true&connectionCollation=utf8_general_ci&characterSetResults=utf8&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true
+      username: denglu
+      password: denglu
+      driver-class-name: com.mysql.jdbc.Driver
+      initial-size: 1
+      max-active: 20
+      min-idle: 1
+      max-wait: 60000
+      pool-prepared-statements: true
+      validation-query: SELECT 'x'
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
 server:
   port: 8080
 

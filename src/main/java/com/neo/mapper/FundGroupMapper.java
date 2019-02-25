@@ -11,10 +11,6 @@ import java.util.Map;
  */
 public interface FundGroupMapper {
 
-    List<Interval> selectFundGroup(Map map);
-
-    int insertRecommendHistory(Map map);
-
     List<Interval> selectAllFundGroup();
 
     List<Interval> selectAllFundGroupNum();
@@ -23,15 +19,7 @@ public interface FundGroupMapper {
 
     List<Interval> getProportion(String id);
 
-    List<FundGroupDetails> efficientFrontier(String uuid);
-
     List<Interval> getinterval(Map map);
-
-    int updateStatus(Map map);
-
-    int insertFundGroup(FundGroup fundGroup);
-
-    int insertFundGroupDetail(List<FundGroupDetails> fundGroupDetailslist);
 
     Interval selectReturnAndPullback(Map map);
 
@@ -43,10 +31,8 @@ public interface FundGroupMapper {
 
     List<RiskIncomeInterval> getScaleMark(@Param("id") String id);
 
-    List<FundGroupBuy> getFundGroupBuy(@Param("id") String id);
+//    FundGroup1 getFundList(@Param("id") String id);
 
-    List<FundNetValue> getFundNetValue(@Param("id") String id,@Param("starttime") String starttime,@Param("endtime") String endtime);
-
-    FundGroup1 getFundList(@Param("id") String id);
+    String getFundList(@Param("id") String id);
 
 }
