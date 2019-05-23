@@ -1,8 +1,5 @@
 package com.neo;
 
-import static com.google.common.base.Predicates.or;
-import static springfox.documentation.builders.PathSelectors.regex;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.async.DeferredResult;
@@ -22,7 +19,7 @@ public class SwaggerConfig {
 
     /**
      * SpringBoot默认已经将classpath:/META-INF/resources/和classpath:/META-INF/resources/webjars/映射
-     * 所以该方法不需要重写，如果在SpringMVC中，可能需要重写定义（我没有尝试）
+     * 所以该方法不需要重写，如果在SpringMVC中，可能需要重写定义
      * 重写该方法需要 extends WebMvcConfigurerAdapter
      *
      */
