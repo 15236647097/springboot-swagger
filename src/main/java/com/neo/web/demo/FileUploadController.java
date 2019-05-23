@@ -1,4 +1,4 @@
-package com.neo.web;
+package com.neo.web.demo;
 
 import com.neo.secvice.ImportService;
 import org.springframework.beans.factory.annotation.Autowired;
