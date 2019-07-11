@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.async.DeferredResult;
 
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
@@ -34,6 +35,8 @@ public class SwaggerConfig {
                 .useDefaultResponseMessages(false)
                 .forCodeGeneration(true)
                 .select()
+//                .apis(RequestHandlerSelectors.any()) // 对所有api进行监控
+//                .paths(PathSelectors.any()) // 对所有路径进行监控
                 .apis(RequestHandlerSelectors.basePackage(SWAGGER_SCAN_BASE_PACKAGE_TEST))
                 .build()
                 .apiInfo(testApiInfo());
@@ -57,6 +60,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("大标题")//大标题
                 .description("详细描述")//详细描述
+                .contact("wangyinuo")
                 .version("1.0")//版本
                 .termsOfServiceUrl("NO terms of service")
                 .license("The Apache License, Version 2.0")
@@ -68,6 +72,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("大标题")//大标题
                 .description("详细描述")//详细描述
+                .contact("wangyinuo")
                 .version("1.0")//版本
                 .termsOfServiceUrl("NO terms of service")
                 .license("The Apache License, Version 2.0")
