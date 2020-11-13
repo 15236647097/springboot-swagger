@@ -9,16 +9,16 @@ import java.util.Map;
  */
 public class Bb {
 
-    private String bb;
+    private String ciphertext;
 
     private Map<String,Object> args;
 
     public String getBb() {
-        return bb;
+        return ciphertext;
     }
 
     public void setBb(String bb) {
-        this.bb = bb;
+        this.ciphertext = bb;
     }
 
     public Map<String,Object> getArgs() {

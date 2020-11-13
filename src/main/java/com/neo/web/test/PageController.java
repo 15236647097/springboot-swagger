@@ -29,18 +29,29 @@ public class PageController {
         return "a";
     }
 
-    @RequestMapping(value = "/test1",method = RequestMethod.POST,consumes = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/test1",method = RequestMethod.POST)
     @ResponseBody
     public String efficientFrontier(@RequestBody Bb bb){
         System.out.println(bb);
         return "bb";
     }
 
-    public static void main(String[] args) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("aaa","aaa");
-        map.put("aaa1","aaa1");
-        System.out.println(JSONObject.toJSONString(map));
+    @RequestMapping(value = "/test2",method = RequestMethod.POST)
+    @ResponseBody
+    public String efficientFrontier1(Bb bb){
+        System.out.println(bb);
+        if ("1".equals(bb.getBb())){
+            return "{\"ciphertext\":1}";
+        } else {
+            return "{\"ciphertext\":2}";
+        }
     }
 
+
+    public static void main(String[] args) {
+        String a = "{\"token\":\"55b3c8dd-f19b-4e65-a63b-a9dfd09fdc1b\",\"holderCode\":\"41010220020815676X\",\"licenseNum\":\"41010220200907001\"}";
+        System.out.println(a.length());
+        System.out.println(a.substring(2,a.length()-2));
+        System.out.println(a.substring(2,a.length()-2).replaceAll("\",\"","&").replaceAll("\":\"","="));
+    }
 }
